@@ -11,3 +11,31 @@ export interface Skill {
   enabled: boolean;
   updatedAt: string;
 }
+
+export interface ReikiArticle {
+  label: string;
+  caption?: string;
+  text: string;
+}
+
+export interface ReikiDocument {
+  fileId: string;
+  fileName: string;
+  title: string;
+  lawNum?: string;
+  articles: ReikiArticle[];
+  rawText: string;
+}
+
+export interface ReikiSearchMatch {
+  articleLabel?: string;
+  snippet: string;
+}
+
+export interface ReikiSearchHit {
+  fileId: string;
+  fileName: string;
+  title: string;
+  lawNum?: string;
+  matches: ReikiSearchMatch[];
+}

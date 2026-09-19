@@ -13,6 +13,11 @@
   - スキルごとに公開/非公開(有効/無効)を切り替え
   - スキル名・カテゴリ・担当部署・概要・詳細説明・利用手順・必要な入力・タグを編集
   - 変更は即座に一般利用者向け画面に反映される(サーバー再起動やビルド不要)
+- **例規検索(`/reiki`)**
+  - Google Driveの指定フォルダに保存されている例規JSON(kisoku-json-converterスキル等で
+    e-Gov法令標準XMLスキーマ準拠に変換したもの)を一覧表示
+  - 例規名・条文キーワードで全文検索し、該当条文の抜粋を表示
+  - 検索結果から該当例規の詳細ページ(`/reiki/[fileId]`)に遷移し、条文単位で全文を閲覧
 
 ## 初期登録スキル
 
@@ -45,10 +50,34 @@ ADMIN_SESSION_SECRET=your-random-secret
 `ADMIN_SESSION_SECRET` はセッションCookieの署名に使う秘密文字列です。未設定時は開発用の
 既定値が使われるため、本番運用前に必ず独自の値を設定してください。
 
+### Google Drive連携(例規検索)
+
+`/reiki` の例規検索機能は、Googleサービスアカウントを使ってDrive上の例規JSONを
+読み取り専用で取得します。以下の環境変数を設定してください(いずれも未設定の場合、
+`/reiki` は「未設定」の案内を表示します)。
+
+```bash
+# .env.local
+GOOGLE_SERVICE_ACCOUNT_EMAIL=xxxx@xxxx.iam.gserviceaccount.com
+GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+GOOGLE_DRIVE_REIKI_FOLDER_ID=例規JSONを格納しているGoogle DriveフォルダのID
+```
+
+事前準備:
+
+1. Google Cloudでサービスアカウントを作成し、Drive APIを有効化してJSON形式の鍵をダウンロードする
+2. 鍵ファイル内の `client_email` を `GOOGLE_SERVICE_ACCOUNT_EMAIL`、`private_key` を
+   `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY` に設定する(改行は `\n` のままでよい)
+3. 例規JSONを格納しているGoogle Driveフォルダをサービスアカウントのメールアドレスへ
+   「閲覧者」として共有し、フォルダIDを `GOOGLE_DRIVE_REIKI_FOLDER_ID` に設定する
+
 ## データ構造
 
 スキル情報は `data/skills.json` に保存されます(`lib/types.ts` の `Skill` 型を参照)。
 管理画面での変更はこのファイルへ直接書き込まれます。
+
+例規JSONはGoogle Drive上のファイルをそのまま参照するため、このリポジトリ内には保存しません
+(`lib/google-drive.ts` がDrive APIから取得、`lib/reiki.ts` が一覧・検索用に解析します)。
 
 ## 技術構成
 

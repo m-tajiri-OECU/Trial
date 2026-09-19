@@ -11,6 +11,9 @@ export default function NavBar() {
           <Link href="/" className="hover:text-oecu-mint">
             スキル一覧
           </Link>
+          <Link href="/reiki" className="hover:text-oecu-mint">
+            例規検索
+          </Link>
           <Link href="/admin" className="hover:text-oecu-mint">
             管理者設定
           </Link>
