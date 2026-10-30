@@ -1,0 +1,7 @@
+[
+  { "id": "copy-paper-a4", "name": "コピー用紙 A4(500枚×5冊)", "keywords": ["コピー用紙", "A4", "用紙"], "unit": "箱", "unitPrice": 2800, "vendor": "アスクル", "recommended": true },
+  { "id": "toner-black", "name": "トナーカートリッジ(黒)", "keywords": ["トナー"], "unit": "個", "unitPrice": 12500, "vendor": "モノタロウ", "recommended": true },
+  { "id": "ballpoint", "name": "ボールペン(黒)10本入", "keywords": ["ボールペン", "筆記具"], "unit": "箱", "unitPrice": 900, "vendor": "アスクル", "recommended": true },
+  { "id": "file-box", "name": "ファイルボックス", "keywords": ["ファイル", "ボックス"], "unit": "個", "unitPrice": 450, "vendor": "モノタロウ", "recommended": false },
+  { "id": "usb-cable", "name": "USB-Cケーブル 1m", "keywords": ["ケーブル", "USB"], "unit": "本", "unitPrice": 780, "vendor": "Amazonビジネス", "recommended": false }
+]

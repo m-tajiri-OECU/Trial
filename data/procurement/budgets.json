@@ -1,0 +1,5 @@
+[
+  { "code": "KEN-2026-001", "name": "研究室運営費(情報)", "department": "情報学部", "annual": 1200000, "executed": 980000 },
+  { "code": "JIM-2026-010", "name": "法人事務局 消耗品費", "department": "法人事務局", "annual": 800000, "executed": 310000 },
+  { "code": "KYO-2026-020", "name": "教育設備費", "department": "教務部", "annual": 5000000, "executed": 1200000 }
+]
