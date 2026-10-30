@@ -1,0 +1,13 @@
+{
+  "name": "procurement-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OECU 購買エージェント(依頼受付・振り分け)。依存パッケージなしのNode.jsアプリ",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  }
+}

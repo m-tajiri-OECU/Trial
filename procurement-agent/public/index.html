@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>購買依頼(試作)</title>
+<style>
+  :root { --navy:#0f2a4a; --teal:#0e7c86; --mint:#e6f5f3; }
+  body { margin:0; font-family:"Yu Gothic",sans-serif; color:#1e293b; background:#f8fafc; }
+  header { background:var(--navy); color:#fff; padding:16px 24px; font-weight:600; }
+  main { max-width:1000px; margin:0 auto; padding:32px 24px; }
+  h1 { color:var(--navy); font-size:1.5rem; margin:0 0 8px; }
+  .note { background:#fffbeb; color:#92400e; font-size:.75rem; padding:8px 12px; border-radius:4px; }
+  .grid { display:grid; gap:24px; grid-template-columns:1fr 1fr; margin-top:24px; }
+  @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
+  .card { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:20px; margin-bottom:16px; font-size:.875rem; }
+  .card h3 { margin:0 0 8px; color:var(--navy); font-size:.95rem; }
+  label { display:block; font-size:.875rem; margin-bottom:12px; font-weight:500; }
+  input, select, textarea { width:100%; box-sizing:border-box; margin-top:4px; padding:8px 12px; border:1px solid #cbd5e1; border-radius:4px; font:inherit; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  button { background:var(--teal); color:#fff; border:0; border-radius:4px; padding:8px 16px; font:inherit; cursor:pointer; }
+  button:disabled { opacity:.5; }
+  .badge { display:inline-block; padding:4px 12px; border-radius:999px; font-size:.75rem; font-weight:600; }
+  .site{ background:var(--mint); color:var(--navy); } .quote{ background:#e0f2fe; color:#0c4a6e; } .review{ background:#fef3c7; color:#78350f; }
+  .warn { background:#fef2f2; border-color:#fecaca; color:#991b1b; }
+  .ask { background:#f1f5f9; }
+  ul { margin:8px 0 0; padding-left:20px; }
+  .err { color:#dc2626; }
+</style>
+</head>
+<body>
+<header>OECU 購買エージェント</header>
+<main>
+  <h1>購買依頼(試作)</h1>
+  <p>依頼内容を入力すると、サイト系/見積系の振り分け、必要な手続き、承認ルート、予算の警告を提案します。エージェントは準備と提案までを行い、発注の確定と承認は人が行います。</p>
+  <p class="note">金額基準・承認ルート・予算データは仮置きのダミー値です(data/)。</p>
+  <div class="grid">
+    <form id="form" class="card">
+      <label>依頼内容(自然文)<textarea name="text" required rows="3" placeholder="例:A4コピー用紙を5箱、研究室用"></textarea></label>
+      <div class="row">
+        <label>数量<input name="quantity" type="number" min="0"></label>
+        <label>概算金額(円)<input name="amount" type="number" min="0"></label>
+      </div>
+      <label>予算科目<select name="budgetCode" id="budget"><option value="">(未選択)</option></select></label>
+      <div class="row">
+        <label>納品先<input name="deliveryPlace"></label>
+        <label>希望納期<input name="deadline" type="date"></label>
+      </div>
+      <button id="submit">振り分けを提案する</button>
+      <p id="error" class="err"></p>
+    </form>
+    <div id="result"><p style="color:#64748b;font-size:.875rem">依頼を入力すると、ここに提案が表示されます。</p></div>
+  </div>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
